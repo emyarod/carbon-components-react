@@ -100,7 +100,7 @@ export class FileUploaderButton extends Component {
   static defaultProps = {
     tabIndex: 0,
     disableLabelChanges: false,
-    labelText: 'Add file',
+    labeltext: 'Add file',
     buttonKind: 'primary',
     multiple: false,
     onChange: () => {},
@@ -123,9 +123,9 @@ export class FileUploaderButton extends Component {
     const length = evt.target.files.length;
     if (files && !this.props.disableLabelChanges) {
       if (length > 1) {
-        this.setState({ labelText: `${length} files` });
+        this.setState({ labeltext: `${length} files` });
       } else if (length === 1) {
-        this.setState({ labelText: files[0].name });
+        this.setState({ labeltext: files[0].name });
       }
     }
     this.props.onChange(evt);
@@ -135,7 +135,7 @@ export class FileUploaderButton extends Component {
     const {
       className,
       disableLabelChanges, // eslint-disable-line
-      labelText, // eslint-disable-line
+      labeltext, // eslint-disable-line
       multiple,
       role,
       tabIndex,
@@ -374,7 +374,7 @@ export default class FileUploader extends Component {
         <strong className={`${prefix}--file--label`}>{labelTitle}</strong>
         <p className={`${prefix}--label-description`}>{labelDescription}</p>
         <FileUploaderButton
-          labelText={buttonLabel}
+          labeltext={buttonLabel}
           multiple={multiple}
           buttonKind={buttonKind}
           onChange={this.handleChange}
