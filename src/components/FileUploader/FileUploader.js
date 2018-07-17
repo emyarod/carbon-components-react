@@ -287,6 +287,7 @@ export default class FileUploader extends Component {
      * Provide a custom className to be applied to the container node
      */
     className: PropTypes.string,
+    onChange: PropTypes.func,
 
     /**
      * Specify the types of files that this input should be able to receive
@@ -301,6 +302,7 @@ export default class FileUploader extends Component {
     buttonKind: 'primary',
     multiple: false,
     onClick: () => {},
+    onChange: () => {},
     accept: [],
   };
 
