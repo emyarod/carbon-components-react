@@ -193,36 +193,14 @@ export class FileUploaderButton extends Component {
   }
 }
 
-export class Filename extends Component {
-  static propTypes = {
-    /**
-     * Specify an optional object of styles to be applied inline to the root
-     * node
-     */
-    style: PropTypes.object,
-
-    /**
-     * Specify the status of the File Upload
-     */
-    status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
-
-    /**
-     * Provide a description for the complete/close icon that can be read by screen readers
-     */
-    iconDescription: PropTypes.string,
-  };
-
-  static defaultProps = {
-    onKeyDown: () => {},
-    status: 'uploading',
-    style: {},
-    tabIndex: 0,
-  };
-
-  render() {
-    const { iconDescription, status, style, ...other } = this.props;
-
-    if (status === 'uploading') {
+export function Filename({
+  iconDescription,
+  status = 'uploading',
+  style = {},
+  ...other
+}) {
+  switch (status) {
+    case 'uploading':
       return (
         <div
           className={`${prefix}--loading`}
@@ -233,7 +211,7 @@ export class Filename extends Component {
           </svg>
         </div>
       );
-    } else if (status === 'edit') {
+    case 'edit':
       return (
         <CloseFilled16
           className={`${prefix}--file-close`}
@@ -243,7 +221,7 @@ export class Filename extends Component {
           {iconDescription && <title>{iconDescription}</title>}
         </CloseFilled16>
       );
-    } else if (status === 'complete') {
+    case 'complete':
       return (
         <CheckmarkFilled16
           className={`${prefix}--file-complete`}
@@ -253,11 +231,14 @@ export class Filename extends Component {
           {iconDescription && <title>{iconDescription}</title>}
         </CheckmarkFilled16>
       );
-    } else {
+    default:
       return null;
-    }
   }
 }
+Filename.propTypes = {
+  style: PropTypes.object,
+  status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
+};
 
 export default class FileUploader extends Component {
   static propTypes = {
