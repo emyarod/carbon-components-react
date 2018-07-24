@@ -98,6 +98,7 @@ export class FileUploaderButton extends Component {
     buttonKind: 'primary',
     multiple: false,
     onChange: () => {},
+    onClick: () => {},
     accept: [],
     disabled: false,
   };
