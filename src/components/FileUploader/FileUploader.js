@@ -199,8 +199,8 @@ export function Filename({
     case 'uploading':
       return (
         <div
-          className={`${prefix}--loading`}
-          style={{ ...style, width: '1rem', height: '1rem' }}
+          className="bx--loading"
+          style={{ ...style }}
           tabIndex={tabIndex}
           onKeyDown={onKeyDown}
           role="button"
