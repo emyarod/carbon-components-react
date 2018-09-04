@@ -9,7 +9,7 @@ import React from 'react';
 import CloseFilled16 from '@carbon/icons-react/lib/close--filled/16';
 import FileUploader, { FileUploaderButton } from '../FileUploader';
 import FileUploaderSkeleton from '../FileUploader/FileUploader.Skeleton';
-import FileUploaderItem from '../FileUploaderItem/FileUploaderItem';
+import FileUploadStatus from '../FileUploadStatus/FileUploadStatus';
 import { mount, shallow } from 'enzyme';
 
 describe('Filename', () => {
@@ -158,11 +158,11 @@ describe('FileUploader', () => {
       });
 
       // Test to make sure that the Filename is rendered
-      expect(mountUploadedWrapper.find(FileUploaderItem)).toHaveLength(1);
+      expect(mountUploadedWrapper.find(FileUploadStatus)).toHaveLength(1);
 
       // Test to make sure it was properly removed
       mountUploadedWrapper.instance().clearFiles();
-      expect(mountUploadedWrapper.update().find(FileUploaderItem)).toHaveLength(
+      expect(mountUploadedWrapper.update().find(FileUploadStatus)).toHaveLength(
         0
       );
     });

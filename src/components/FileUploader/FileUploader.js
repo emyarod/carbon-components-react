@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import { settings } from 'carbon-components';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
+import FileUploadStatus from '../FileUploadStatus/FileUploadStatus';
 
 const { prefix } = settings;
 
@@ -343,7 +344,7 @@ export default class FileUploader extends Component {
                   {...other}>
                   <p className="bx--file-filename">{name}</p>
                   <span className="bx--file__state-container">
-                    <FileUploaderItem
+                    <FileUploadStatus
                       iconDescription={iconDescription}
                       status={filenameStatus}
                       onKeyDown={evt => {

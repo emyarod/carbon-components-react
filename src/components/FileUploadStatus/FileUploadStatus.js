@@ -9,7 +9,7 @@ import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
-export function FileUploaderItem({
+export default function FileUploadStatus({
   iconDescription,
   onKeyDown,
   status,
@@ -78,7 +78,8 @@ export function FileUploaderItem({
       return null;
   }
 }
-FileUploaderItem.propTypes = {
+
+FileUploadStatus.propTypes = {
   /**
    * Provide an optional `onKeyDown` hook that is called if Space or Return is
    * pressed while the component is focused
@@ -94,11 +95,11 @@ FileUploaderItem.propTypes = {
    */
   status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
   /**
-   * Provide a custom tabIndex value for the <FileUploaderItem>
+   * Provide a custom tabIndex value for the <FileUploadStatus>
    */
   tabIndex: PropTypes.number,
 };
-FileUploaderItem.defaultProps = {
+FileUploadStatus.defaultProps = {
   onKeyDown: () => {},
   status: 'uploading',
   style: {},
