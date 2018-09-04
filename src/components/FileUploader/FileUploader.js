@@ -103,6 +103,8 @@ export class FileUploaderButton extends Component {
     disabled: false,
   };
 
+  state = {};
+
   static getDerivedStateFromProps({ labelText }, state) {
     const { prevLabelText } = state;
     return prevLabelText === labelText
