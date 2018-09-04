@@ -47,10 +47,9 @@ export {
 export DatePicker from './components/DatePicker';
 export DatePickerInput from './components/DatePickerInput';
 export Dropdown from './components/Dropdown';
-export FileUploader, {
-  Filename,
-  FileUploaderButton,
-} from './components/FileUploader';
+export DropdownItem from './components/DropdownItem';
+export FileUploader, { FileUploaderButton } from './components/FileUploader';
+export FileUploaderV2 from './components/FileUploaderV2';
 export Form from './components/Form';
 export FormGroup from './components/FormGroup';
 export FormItem from './components/FormItem';
