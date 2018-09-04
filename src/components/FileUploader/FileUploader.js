@@ -12,8 +12,6 @@ import classNames from 'classnames';
 import { settings } from 'carbon-components';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
-import CloseFilled16 from '@carbon/icons-react/lib/close--filled/16';
-import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
 
 const { prefix } = settings;
 
@@ -189,66 +187,6 @@ export class FileUploaderButton extends Component {
   }
 }
 
-export function Filename({
-  iconDescription,
-  onKeyDown,
-  status,
-  style,
-  tabIndex,
-  ...other
-}) {
-  switch (status) {
-    case 'uploading':
-      return (
-        <div
-          className="bx--loading"
-          style={{ ...style }}
-          tabIndex={tabIndex}
-          onKeyDown={onKeyDown}
-          role="button"
-          {...other}>
-          <svg className={`${prefix}--loading__svg`} viewBox="-42 -42 84 84">
-            <circle cx="0" cy="0" r="37.5" />
-          </svg>
-        </div>
-      );
-    case 'edit':
-      return (
-        <CloseFilled16
-          className={`${prefix}--file-close`}
-          aria-label={iconDescription}
-          style={style}
-          {...other}>
-          {iconDescription && <title>{iconDescription}</title>}
-        </CloseFilled16>
-      );
-    case 'complete':
-      return (
-        <CheckmarkFilled16
-          className={`${prefix}--file-complete`}
-          aria-label={iconDescription}
-          style={style}
-          {...other}>
-          {iconDescription && <title>{iconDescription}</title>}
-        </CheckmarkFilled16>
-      );
-    default:
-      return null;
-  }
-}
-Filename.propTypes = {
-  onKeyDown: PropTypes.func,
-  style: PropTypes.object,
-  status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
-  tabIndex: PropTypes.number,
-};
-Filename.defaultProps = {
-  onKeyDown: () => {},
-  status: 'uploading',
-  style: {},
-  tabIndex: 0,
-};
-
 export default class FileUploader extends Component {
   static propTypes = {
     /**
@@ -403,9 +341,9 @@ export default class FileUploader extends Component {
                   className={`${prefix}--file__selected-file`}
                   ref={node => (this.nodes[index] = node)} // eslint-disable-line
                   {...other}>
-                  <p className={`${prefix}--file-filename`}>{name}</p>
-                  <span className={`${prefix}--file__state-container`}>
-                    <Filename
+                  <p className="bx--file-filename">{name}</p>
+                  <span className="bx--file__state-container">
+                    <FileUploaderItem
                       iconDescription={iconDescription}
                       status={filenameStatus}
                       onKeyDown={evt => {
