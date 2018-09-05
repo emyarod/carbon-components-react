@@ -8,7 +8,7 @@
 import React from 'react';
 import CloseFilled16 from '@carbon/icons-react/lib/close--filled/16';
 import FileUploader, { FileUploaderButton } from '../FileUploader';
-import FileUploaderSkeleton from '../FileUploader/FileUploader.Skeleton';
+import FileUploaderSkeleton from '../FileUploaderSkeleton/FileUploader.Skeleton';
 import FileUploadStatus from '../FileUploadStatus/FileUploadStatus';
 import { mount, shallow } from 'enzyme';
 
