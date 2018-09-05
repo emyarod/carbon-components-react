@@ -13,6 +13,7 @@ import { settings } from 'carbon-components';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
 import FileUploadStatus from '../FileUploadStatus/FileUploadStatus';
+export { FileUploadStatus as Filename };
 
 const { prefix } = settings;
 
