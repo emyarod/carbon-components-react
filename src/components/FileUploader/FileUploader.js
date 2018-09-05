@@ -192,59 +192,52 @@ export class FileUploaderButton extends Component {
 export default class FileUploader extends Component {
   static propTypes = {
     /**
-     * Provide a description for the complete/close icon that can be read by screen readers
+     * Add a description to the SVG icon for all file upload statuses
      */
     iconDescription: PropTypes.string,
-
     /**
-     * Provide the label text to be read by screen readers when interacting with
-     * the <FileUploaderButton>
+     * Provide a label for the <FileUploaderButton>
      */
     buttonLabel: PropTypes.string,
-
     /**
-     * Specify the type of the <FileUploaderButton>
+     * Specify the type of underlying button
      */
     buttonKind: ButtonTypes.buttonKind,
-
     /**
-     * Specify the status of the File Upload
+     * Specify the status of all uploads passing through the <FileUploader>
      */
     filenameStatus: PropTypes.oneOf(['edit', 'complete', 'uploading'])
       .isRequired,
-
     /**
-     * Specify the description text of this <FileUploader>
+     * Provide description text for the <FileUploader> label
      */
     labelDescription: PropTypes.string,
-
     /**
-     * Specify the title text of this <FileUploader>
+     * Provide a label title for the input form
      */
     labelTitle: PropTypes.string,
-
     /**
      * Specify if the component should accept multiple files to upload
      */
     multiple: PropTypes.bool,
-
     /**
      * Provide a name for the underlying <input> node
      */
     name: PropTypes.string,
-
     /**
      * Provide an optional `onClick` hook that is called each time the button is
      * clicked
      */
     onClick: PropTypes.func,
-
+    /**
+     * Provide an optional `onChange` hook that is called each time the <input>
+     * value changes
+     */
+    onChange: PropTypes.func,
     /**
      * Provide a custom className to be applied to the container node
      */
     className: PropTypes.string,
-    onChange: PropTypes.func,
-
     /**
      * Specify the types of files that this input should be able to receive
      */
