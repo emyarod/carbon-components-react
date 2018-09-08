@@ -11,10 +11,8 @@ const { prefix } = settings;
 
 export default function FileUploadStatus({
   iconDescription,
-  onKeyDown,
   status,
   style,
-  tabIndex,
   ...other
 }) {
   switch (status) {
@@ -43,9 +41,6 @@ export default function FileUploadStatus({
           description={iconDescription}
           className={`${prefix}--file-close`}
           icon={iconCloseSolid}
-          style={style}
-          tabIndex={tabIndex}
-          onKeyDown={onKeyDown}
           role="button"
           {...other}
         />
@@ -64,9 +59,6 @@ export default function FileUploadStatus({
           description={iconDescription}
           className={`${prefix}--file-complete`}
           icon={iconCheckmarkSolid}
-          style={style}
-          tabIndex={tabIndex}
-          onKeyDown={onKeyDown}
           role="button"
           {...other}
         />
