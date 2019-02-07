@@ -87,7 +87,7 @@ class App extends React.Component {
       const index = files.findIndex(file => file.uuid === uuid);
       this.upload({ file })
         .then(() => {
-          fetchMock.restore();
+          fetchMock.resetHistory();
           files[index].status = 'complete';
           files[index].iconDescription = 'Upload complete';
           this.setState({ files });
