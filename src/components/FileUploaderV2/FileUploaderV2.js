@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
 import FileUploadStatus from '../FileUploadStatus/FileUploadStatus';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 export class FileUploaderButtonV2 extends Component {
   static propTypes = {
@@ -70,38 +74,43 @@ export class FileUploaderButtonV2 extends Component {
     const {
       className,
       multiple,
+      role,
+      tabIndex,
       buttonKind,
       accept,
       name,
+      disabled,
       onChange,
       labelText,
       ...other
     } = this.props;
     const classes = classNames({
-      'bx--file': true,
+      [`${prefix}--btn`]: true,
+      [`${prefix}--btn--${buttonKind}`]: true,
+      [`${prefix}--btn--sm`]: componentsX,
       [className]: className,
     });
 
     return (
-      <div
-        role="button"
-        tabIndex="0"
-        className={classes}
-        onKeyDown={evt => {
-          if (evt.which === 13 || evt.which === 32) {
-            this.input.click();
-          }
-        }}>
+      <>
         <label
-          className={`bx--btn bx--btn--${buttonKind}`}
+          tabIndex={tabIndex || 0}
+          className={classes}
+          onKeyDown={evt => {
+            if (evt.which === 13 || evt.which === 32) {
+              this.input.click();
+            }
+          }}
           htmlFor={this.uid}
+          role={role || 'button'}
           {...other}>
           {labelText}
         </label>
         <input
-          className="bx--visually-hidden"
+          className={`${prefix}--visually-hidden`}
           ref={input => (this.input = input)}
           id={this.uid}
+          disabled={disabled}
           type="file"
           tabIndex="-1"
           multiple={multiple}
@@ -112,7 +121,7 @@ export class FileUploaderButtonV2 extends Component {
             evt.target.value = null;
           }}
         />
-      </div>
+      </>
     );
   }
 }
@@ -142,7 +151,10 @@ export default function FileUploaderV2({
 
   return (
     <div className={classes} {...other}>
-      <strong className="bx--label">{labelTitle}</strong>
+      <strong
+        className={componentsX ? `${prefix}--file--label` : `${prefix}--label`}>
+        {labelTitle}
+      </strong>
       <p className="bx--label-description">{labelDescription}</p>
       <FileUploaderButtonV2
         labelText={buttonLabel}
