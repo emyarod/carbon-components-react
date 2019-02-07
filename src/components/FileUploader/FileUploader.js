@@ -156,7 +156,6 @@ export class FileUploaderButton extends Component {
     return (
       <>
         <label
-          role="button"
           tabIndex={tabIndex || 0}
           className={classes}
           onKeyDown={evt => {
@@ -165,7 +164,7 @@ export class FileUploaderButton extends Component {
             }
           }}
           htmlFor={this.uid}
-          role={role}
+          role={role || 'button'}
           {...other}>
           {this.state.labelText}
         </label>
