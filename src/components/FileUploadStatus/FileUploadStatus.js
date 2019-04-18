@@ -90,12 +90,12 @@ FileUploadStatus.propTypes = {
   /**
    * Provide a custom tabIndex value for the <FileUploadStatus>
    */
-  tabIndex: PropTypes.number,
+  tabIndex: PropTypes.string,
 };
 FileUploadStatus.defaultProps = {
   iconDescription: 'Uploading file',
   onKeyDown: () => {},
   status: 'uploading',
   style: {},
-  tabIndex: 0,
+  tabIndex: '0',
 };
