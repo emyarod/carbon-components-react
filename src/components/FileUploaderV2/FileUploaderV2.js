@@ -145,7 +145,7 @@ export default function FileUploaderV2({
 }) {
   const handleChange = evt => onChange({ evt, multiple });
   const classes = classNames({
-    'bx--form-item': true,
+    [`${prefix}--form-item`]: true,
     [className]: className,
   });
 
@@ -155,7 +155,7 @@ export default function FileUploaderV2({
         className={componentsX ? `${prefix}--file--label` : `${prefix}--label`}>
         {labelTitle}
       </strong>
-      <p className="bx--label-description">{labelDescription}</p>
+      <p className={`${prefix}--label-description`}>{labelDescription}</p>
       <FileUploaderButtonV2
         labelText={buttonLabel}
         multiple={multiple}
@@ -167,12 +167,15 @@ export default function FileUploaderV2({
         role={role}
         id={id}
       />
-      <div className="bx--file-container">
+      <div className={`${prefix}--file-container`}>
         {files.length
           ? files.map((file, index) => (
-              <span key={uid()} className="bx--file__selected-file" {...other}>
-                <p className="bx--file-filename">{file.name}</p>
-                <span className="bx--file__state-container">
+              <span
+                key={uid()}
+                className={`${prefix}--file__selected-file`}
+                {...other}>
+                <p className={`${prefix}--file-filename`}>{file.name}</p>
+                <span className={`${prefix}--file__state-container`}>
                   <FileUploadStatus
                     iconDescription={file.iconDescription}
                     status={file.status}

@@ -1,7 +1,10 @@
 import React from 'react';
+import { mount, shallow } from 'enzyme';
+import { settings } from 'carbon-components';
 import FileUploaderV2, { FileUploaderButtonV2 } from '../FileUploaderV2';
 import FileUploaderSkeleton from '../FileUploaderSkeleton/FileUploader.Skeleton';
-import { mount, shallow } from 'enzyme';
+
+const { prefix } = settings;
 
 describe('FileUploaderButton', () => {
   const button = <FileUploaderButtonV2 className="extra-class" />;
@@ -9,7 +12,7 @@ describe('FileUploaderButton', () => {
 
   describe('Renders as expected with default props', () => {
     it('renders with expected className', () => {
-      expect(mountWrapper.children().hasClass('bx--file')).toBe(true);
+      expect(mountWrapper.find('label').hasClass(`${prefix}--btn`)).toBe(true);
     });
 
     it('renders with given className', () => {
@@ -25,7 +28,7 @@ describe('FileUploaderButton', () => {
     });
 
     it('renders with expected button className', () => {
-      expect(mountWrapper.find('.bx--btn--primary').exists()).toBe(true);
+      expect(mountWrapper.find(`.${prefix}--btn--primary`).exists()).toBe(true);
     });
 
     it('renders with default multiple prop', () => {
@@ -41,7 +44,7 @@ describe('FileUploaderButton', () => {
     });
 
     it('resets the input value onClick', () => {
-      const input = mountWrapper.find('.bx--visually-hidden');
+      const input = mountWrapper.find(`.${prefix}--visually-hidden`);
       input.instance().value = '';
       const evt = { target: { value: input.instance().value } };
       input.simulate('click', evt);
@@ -72,7 +75,9 @@ describe('FileUploader', () => {
 
   describe('Renders as expected with defaults', () => {
     it('should render with default className', () => {
-      expect(mountWrapper.children().hasClass('bx--form-item')).toEqual(true);
+      expect(mountWrapper.children().hasClass(`${prefix}--form-item`)).toEqual(
+        true
+      );
     });
 
     it('should render with given className', () => {
@@ -81,11 +86,13 @@ describe('FileUploader', () => {
 
     it('renders input with hidden prop', () => {
       expect(mountWrapper.find('input').props().className).toEqual(
-        'bx--visually-hidden'
+        `${prefix}--visually-hidden`
       );
     });
-    it('renders with empty div.bx--file-container by default', () => {
-      expect(mountWrapper.find('div.bx--file-container').text()).toEqual('');
+    it(`renders with empty div.${prefix}--file-container by default`, () => {
+      expect(mountWrapper.find(`div.${prefix}--file-container`).text()).toEqual(
+        ''
+      );
     });
   });
 });
@@ -95,7 +102,7 @@ describe('FileUploaderSkeleton', () => {
     const wrapper = shallow(<FileUploaderSkeleton />);
 
     it('Has the expected classes', () => {
-      expect(wrapper.hasClass('bx--form-item')).toEqual(true);
+      expect(wrapper.hasClass(`${prefix}--form-item`)).toEqual(true);
     });
   });
 });
