@@ -1,9 +1,14 @@
 import React from 'react';
+import { settings } from 'carbon-components';
 import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
 import { shallow, mount } from 'enzyme';
 import FileUploadStatus from './FileUploadStatus';
+import CloseFilled16 from '@carbon/icons-react/lib/close--filled/16';
+import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
 import Icon from '../Icon';
+import { componentsX } from '../../internal/FeatureFlags';
 
+const { prefix } = settings;
 const rand3 = () => {
   const n = Math.random();
   switch (n) {
@@ -19,13 +24,15 @@ const rand3 = () => {
 const possibleProps = {
   classNames: ['bx--loading', 'bx--file-close', 'bx--file-complete'],
   icons: [
-    <div className="bx--loading" role="button">
-      <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
+    <div
+      className={`${prefix}--loading`}
+      style={{ width: '1rem', height: '1rem' }}>
+      <svg className={`${prefix}--loading__svg`} viewBox="-42 -42 84 84">
         <circle cx="0" cy="0" r="37.5" />
       </svg>
     </div>,
-    iconCloseSolid,
-    iconCheckmarkSolid,
+    componentsX ? CloseFilled16 : iconCloseSolid,
+    componentsX ? CheckmarkFilled16 : iconCheckmarkSolid,
   ],
   statuses: ['uploading', 'edit', 'complete'],
 };
@@ -40,21 +47,26 @@ describe('FileUploadStatus', () => {
       />
     );
     const shallowWrapper = shallow(element);
-    const mountedWrapper = mount(element);
 
     it('renders upload status icon as expected', () => {
       expect(shallowWrapper.length).toBe(1);
-      n === 0
-        ? expect(shallowWrapper.find('div.bx--loading').length).toBe(1)
-        : expect(shallowWrapper.find(Icon).length).toBe(1);
-    });
-
-    it('should use correct icon', () => {
-      n === 0
-        ? expect(mountedWrapper.matchesElement(possibleProps[n]))
-        : expect(possibleProps.icons).toContain(
-            mountedWrapper.find(Icon).props().icon
-          );
+      switch (n) {
+        case 0:
+          expect(shallowWrapper.find(`div.${prefix}--loading`).length).toBe(1);
+          break;
+        case 1:
+          expect(
+            shallowWrapper.find(componentsX ? CloseFilled16 : Icon).length
+          ).toBe(1);
+          break;
+        case 2:
+          expect(
+            shallowWrapper.find(componentsX ? CheckmarkFilled16 : Icon).length
+          ).toBe(1);
+          break;
+        default:
+          break;
+      }
     });
 
     it('has the expected classes', () => {
