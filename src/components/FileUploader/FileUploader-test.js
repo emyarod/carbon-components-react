@@ -13,8 +13,7 @@ import FileUploadStatus from '../FileUploadStatus/FileUploadStatus';
 import { mount, shallow } from 'enzyme';
 
 describe('Filename', () => {
-  const mountWrapper = mount(<FileUploaderItem name={'trees.jpg'} />);
-
+  const mountWrapper = mount(<FileUploadStatus name={'trees.jpg'} />);
   describe('click on edit icon (close--solid)', () => {
     it('should have a click event', () => {
       const onClick = jest.fn();

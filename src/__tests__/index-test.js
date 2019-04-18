@@ -45,7 +45,7 @@ describe('Carbon Components React', () => {
         "FileUploader",
         "FileUploaderButton",
         "FileUploaderSkeleton",
-        "Filename",
+        "FileUploaderV2",
         "Form",
         "FormGroup",
         "FormItem",
