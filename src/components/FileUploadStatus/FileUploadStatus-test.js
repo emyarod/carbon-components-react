@@ -1,12 +1,9 @@
 import React from 'react';
 import { settings } from 'carbon-components';
-import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
 import { shallow, mount } from 'enzyme';
 import FileUploadStatus from './FileUploadStatus';
 import CloseFilled16 from '@carbon/icons-react/lib/close--filled/16';
 import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
-import Icon from '../Icon';
-import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 const rand3 = () => {
@@ -31,8 +28,8 @@ const possibleProps = {
         <circle cx="0" cy="0" r="37.5" />
       </svg>
     </div>,
-    componentsX ? CloseFilled16 : iconCloseSolid,
-    componentsX ? CheckmarkFilled16 : iconCheckmarkSolid,
+    CloseFilled16,
+    CheckmarkFilled16,
   ],
   statuses: ['uploading', 'edit', 'complete'],
 };
@@ -55,14 +52,10 @@ describe('FileUploadStatus', () => {
           expect(shallowWrapper.find(`div.${prefix}--loading`).length).toBe(1);
           break;
         case 1:
-          expect(
-            shallowWrapper.find(componentsX ? CloseFilled16 : Icon).length
-          ).toBe(1);
+          expect(shallowWrapper.find(CloseFilled16).length).toBe(1);
           break;
         case 2:
-          expect(
-            shallowWrapper.find(componentsX ? CheckmarkFilled16 : Icon).length
-          ).toBe(1);
+          expect(shallowWrapper.find(CheckmarkFilled16).length).toBe(1);
           break;
         default:
           break;

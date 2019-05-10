@@ -6,18 +6,23 @@ import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
 
 const { prefix } = settings;
 
-export default function FileUploadStatus({
+export function FileUploaderItem({
   iconDescription,
+  onKeyDown,
   status,
   style,
+  tabIndex,
   ...other
 }) {
   switch (status) {
     case 'uploading':
       return (
         <div
-          className={`${prefix}--loading`}
-          style={{ ...style, width: '1rem', height: '1rem' }}
+          className="bx--loading"
+          style={{ ...style }}
+          tabIndex={tabIndex}
+          onKeyDown={onKeyDown}
+          role="button"
           {...other}>
           <svg className={`${prefix}--loading__svg`} viewBox="-42 -42 84 84">
             <circle cx="0" cy="0" r="37.5" />
@@ -48,12 +53,7 @@ export default function FileUploadStatus({
       return null;
   }
 }
-
-FileUploadStatus.propTypes = {
-  /**
-   * Provide a description of the SVG icon to denote file upload status
-   */
-  iconDescription: PropTypes.string,
+FileUploaderItem.propTypes = {
   /**
    * Provide an optional `onKeyDown` hook that is called if Space or Return is
    * pressed while the component is focused
@@ -69,14 +69,13 @@ FileUploadStatus.propTypes = {
    */
   status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
   /**
-   * Provide a custom tabIndex value for the <FileUploadStatus>
+   * Provide a custom tabIndex value for the <FileUploaderItem>
    */
-  tabIndex: PropTypes.string,
+  tabIndex: PropTypes.number,
 };
-FileUploadStatus.defaultProps = {
-  iconDescription: 'Uploading file',
+FileUploaderItem.defaultProps = {
   onKeyDown: () => {},
   status: 'uploading',
   style: {},
-  tabIndex: '0',
+  tabIndex: 0,
 };
