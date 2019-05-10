@@ -5,7 +5,6 @@ import { settings } from 'carbon-components';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
 import FileUploadStatus from '../FileUploadStatus/FileUploadStatus';
-import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -87,7 +86,7 @@ export class FileUploaderButtonV2 extends Component {
     const classes = classNames({
       [`${prefix}--btn`]: true,
       [`${prefix}--btn--${buttonKind}`]: true,
-      [`${prefix}--btn--sm`]: componentsX,
+      [`${prefix}--btn--sm`]: true,
       [className]: className,
     });
 
@@ -151,10 +150,7 @@ export default function FileUploaderV2({
 
   return (
     <div className={classes} {...other}>
-      <strong
-        className={componentsX ? `${prefix}--file--label` : `${prefix}--label`}>
-        {labelTitle}
-      </strong>
+      <strong className={`${prefix}--file--label`}>{labelTitle}</strong>
       <p className={`${prefix}--label-description`}>{labelDescription}</p>
       <FileUploaderButtonV2
         labelText={buttonLabel}
