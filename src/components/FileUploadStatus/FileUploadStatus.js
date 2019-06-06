@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { settings } from 'carbon-components';
 import CloseFilled16 from '@carbon/icons-react/lib/close--filled/16';
 import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
+import InlineLoading from '../InlineLoading';
 
 const { prefix } = settings;
 
@@ -14,16 +15,7 @@ export default function FileUploadStatus({
 }) {
   switch (status) {
     case 'uploading':
-      return (
-        <div
-          className={`${prefix}--loading`}
-          style={{ ...style, width: '1rem', height: '1rem' }}
-          {...other}>
-          <svg className={`${prefix}--loading__svg`} viewBox="-42 -42 84 84">
-            <circle cx="0" cy="0" r="37.5" />
-          </svg>
-        </div>
-      );
+      return <InlineLoading />;
     case 'edit':
       return (
         <CloseFilled16
